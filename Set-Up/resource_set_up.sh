@@ -1,4 +1,4 @@
-
+#!/bin/sh
 echo "Install Azure CLI?"
 select yn in "Yes" "No"; do
     case $yn in
