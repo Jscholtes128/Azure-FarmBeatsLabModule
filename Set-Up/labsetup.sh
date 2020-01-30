@@ -1,4 +1,5 @@
 #!/bin/sh
+az extension add --name azure-cli-iot-ext
 RESOURCE_GROUP=rg-FarmBeatLab-$RANDOM
 IOT_HUB=IotFarmBeatLab-$RANDOM
 DEVICE_ID=FarmBeatEdgeDevice
