@@ -9,4 +9,4 @@ sudo apt-get -y install moby-engine
 sudo apt-get -y install moby-cli
 sudo apt-get update && \
 sudo apt-get -y install iotedge
-sudo nano /etc/iotedge/config.yaml
+#sudo nano /etc/iotedge/config.yaml
