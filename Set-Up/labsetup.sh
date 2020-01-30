@@ -1,7 +1,7 @@
 #!/bin/sh
 RESOURCE_GROUP=rg-FarmBeatLab-$RANDOM
 IOT_HUB=IotFarmBeatLab-$RANDOM
-echo 's/<ADD DEVICE CONNECTION STRING HERE/'"$RANDOM"'/g'
+echo 's/<ADD DEVICE CONNECTION STRING HERE/'"$IOT_HUB"'/g'
 az login
 az group create --name $RESOURCE_GROUP --location "Central US"
 az iot hub create --name $IOT_HUB \
