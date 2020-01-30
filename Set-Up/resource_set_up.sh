@@ -1,11 +1,12 @@
 #!/bin/sh
-echo "Install Azure CLI?"
-select yn in "Yes" "No"; do
-    case $yn in
-        Yes ) curl -L https://aka.ms/InstallAzureCli | bash; break;;
-        No ) break;;
-    esac
-done
+curl -L https://aka.ms/InstallAzureCli | bash
+#echo "Install Azure CLI?"
+#select yn in "Yes" "No"; do
+#    case $yn in
+#        Yes ) curl -L https://aka.ms/InstallAzureCli | bash; break;;
+#        No ) break;;
+#    esac
+#done
 az login
 RESOURCE_GROUP=rg-FarmBeatLab-$RANDOM
 IOT_HUB=IotFarmBeatLab-$RANDOM
