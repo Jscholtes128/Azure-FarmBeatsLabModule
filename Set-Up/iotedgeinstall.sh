@@ -1,5 +1,5 @@
 #!/bin/sh
-curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor  microsoft.gpg
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 sudo cp ./microsoft.gpg /etc/apt/trusted.gpg.d/
 sudo apt-get update
 sudo apt-get install moby-engine
