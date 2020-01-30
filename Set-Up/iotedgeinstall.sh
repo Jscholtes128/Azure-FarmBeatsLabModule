@@ -1,5 +1,5 @@
 #!/bin/sh
-#curl https://packages.microsoft.com/config/debian/stretch/multiarch/prod.list > ./microsoft-prod.list
+sudo apt-get install libssl1.0.2
 curl https://packages.microsoft.com/config/debian/10/prod.list > ./microsoft-prod.list
 sudo cp ./microsoft-prod.list /etc/apt/sources.list.d/
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
