@@ -3,7 +3,7 @@ from Device import Device
 from BME280 import BME280
 import time
 import AppState
-
+import datetime
 import iothub_client
 from iothub_client import (IoTHubMessage)
 
@@ -18,13 +18,20 @@ class InputCapture(object):
         self.verbose = verbose
         self.interval = interval
         self.running = True
-        bme = BME280(verbose,0x76,"13213")
+
+    def __enter__(self):
+
+        if self.verbose:
+            print("inputCapture::__enter__()")
+        return self
     
-    def stop():
+    def stop(self):
         self.running = False
     
-    def start():
-        while(running):
+    def start(self):
+        bme = BME280(self.verbose,"13213")
+
+        while(self.running):
             timestamp = datetime.datetime.now().isoformat()
             sensors = []
             sensors.append(bme.capture())
@@ -40,4 +47,10 @@ class InputCapture(object):
             AppState.HubManager.send_event_to_output("output1", message, 0)
             #self.lastMessageSentTime=datetime.now()
 
-            time.sleep(interval)
+            time.sleep(self.interval)
+
+
+    def __exit__(self, exception_type, exception_value, traceback):
+
+        self.stop()
+            

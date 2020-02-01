@@ -33,7 +33,7 @@ def send_confirmation_callback(message, result, user_context):
 
 def device_twin_callback(update_state, payload, user_context):
     global hubManager
-    global InputCapture
+    global inputCapture
 
     if (("%s"%(update_state)) == "PARTIAL"):
         jsonData = json.loads(payload)
@@ -46,17 +46,14 @@ def device_twin_callback(update_state, payload, user_context):
 
     if "Interval" in jsonData:
         print("   - Interval : " + str(jsonData['Interval']))
-        InputCapture.interval = float(jsonData['Interval'])
+        inputCapture.interval = float(jsonData['Interval'])
 
     device_twin_send_reported(hubManager)
 
 def device_twin_send_reported(hubManager):
-    global videoCapture
+    global inputCapture
 
-    jsonTemplate = "{\"Interval\": \"%s\"}"
-
-    jsonData = jsonTemplate % (
-        str(InputCapture.interval)
+    jsonData = "{\"Interval\": \"%s\"}" % str(inputCapture.interval)    
 
     print("\r\ndevice_twin_send_reported()")
     print("   - payload : \r\n%s" % json.dumps(jsonData, indent=4))
@@ -109,8 +106,7 @@ def main(
         print("\nPython %s\n" % sys.version )
         print("Farm Beat Lab IoT Edge Module. Press Ctrl-C to exit." )
 
-        with inputCapture( 
-                         verbose                         
+        with InputCapture(verbose,                        
                          interval) as inputCapture:
 
             try:
@@ -138,7 +134,7 @@ def __convertStringToBool(env):
 if __name__ == '__main__':
     try:        
         VERBOSE = __convertStringToBool(os.getenv('VERBOSE', 'False'))        
-        CONFIDENCE_LEVEL = float(os.getenv('INTERVAL', "6000"))
+        INTERVAL = float(os.getenv('INTERVAL', "6000"))
 
     except ValueError as error:
         print(error )

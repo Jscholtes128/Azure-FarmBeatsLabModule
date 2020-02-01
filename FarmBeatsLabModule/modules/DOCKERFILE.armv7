@@ -1,0 +1,64 @@
+#FROM arm32v7/python:rc-buster as base
+FROM arm32v7/ubuntu:18.04 as base
+FROM base AS adabase
+
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+    software-properties-common \
+    sudo
+
+RUN add-apt-repository universe
+RUN apt-get install -y --no-install-recommends \
+  build-essential \
+  gcc
+
+RUN sudo apt-get install -y python3-pip python3-venv 
+RUN sudo apt-get install -y python3-rpi.gpio
+RUN sudo pip3 install -U pip
+RUN pip3 install setuptools
+
+RUN pip3 install adafruit-circuitpython-ssd1306
+RUN pip3 install adafruit-circuitpython-bme280
+
+FROM adabase AS build-image
+
+
+RUN apt-get install -y git
+
+### IOT Client ####
+
+RUN echo 'libc6 libraries/restart-without-asking boolean true'
+# | sudo debconf-set-select
+
+RUN sudo DEBIAN_FRONTEND=noninteractive apt-get install -y libc6
+
+RUN sudo DEBIAN_FRONTEND=noninteractive  apt-get install -y cmake  curl libcurl4-openssl-dev \
+libssl-dev uuid-dev apt-utils libboost-python-dev pkg-config valgrind  git 
+
+
+WORKDIR /usr/sdk
+
+#RUN sudo git clone --recursive --depth=1 https://github.com/Azure/azure-iot-sdk-python.git src
+RUN sudo git clone --recursive --depth=1 https://github.com/Azure/azure-iot-sdk-python.git --branch release_2019_01_03 --single-branch src
+
+## Build for Python 3
+RUN sudo ./src/build_all/linux/setup.sh --python-version 3.6
+RUN sudo ./src/build_all/linux/release.sh --build-python 3.6
+
+
+WORKDIR /usr/sdk/src/build_all/linux/release_device_client
+RUN python3 setup.py install
+
+
+# Add the application
+COPY FarmBeatsLabModule/app /app
+
+# Set the working directory
+WORKDIR /app
+
+RUN cp /usr/sdk/src/device/samples/iothub_client.so iothub_client.so
+
+# Expose the port
+EXPOSE 80
+
+ENTRYPOINT [ "python3", "-u", "./main.py" ]
