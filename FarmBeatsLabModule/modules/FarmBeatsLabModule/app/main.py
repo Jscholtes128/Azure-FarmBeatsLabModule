@@ -48,12 +48,33 @@ def device_twin_callback(update_state, payload, user_context):
         print("   - Interval : " + str(jsonData['Interval']))
         inputCapture.interval = float(jsonData['Interval'])
 
+    if "DeviceID" in jsonData:
+        print("   - DeviceID : " + str(jsonData['DeviceID']))
+        inputCapture.deviceID = str(jsonData['DeviceID'])
+
+    if "PressureSensorID" in jsonData:
+        print("   - PressureSensorID : " + str(jsonData['PressureSensorID']))
+        inputCapture.pressureSensorID = str(jsonData['PressureSensorID'])
+
+    if "TempSensorID" in jsonData:
+        print("   - TempSensorID : " + str(jsonData['TempSensorID']))
+        inputCapture.tempSensorID = str(jsonData['TempSensorID'])
+
+
+
     device_twin_send_reported(hubManager)
 
 def device_twin_send_reported(hubManager):
     global inputCapture
 
-    jsonData = "{\"Interval\": \"%s\"}" % str(inputCapture.interval)    
+    jsonTemplate = "{\"Interval\": \"%s\",\"DeviceID\": \"%s\",\"PressureSensorID\": \"%s\", \"TempSensorID\":\"%s\"}"
+
+    
+    jsonData = jsonTemplate % (
+        str(inputCapture.interval),
+        inputCapture.deviceID,
+        inputCapture.pressureSensorID,
+        inputCapture.tempSensorID)
 
     print("\r\ndevice_twin_send_reported()")
     print("   - payload : \r\n%s" % json.dumps(jsonData, indent=4))
@@ -96,7 +117,7 @@ class HubManager(object):
 
 def main(
         verbose = False,        
-        interval = 600
+        interval = 60
         ):
 
     global hubManager
@@ -110,7 +131,7 @@ def main(
                          interval) as inputCapture:
 
             try:
-                hubManager = HubManager(10000, IoTHubTransportProvider.MQTT, False)
+                hubManager = HubManager(10000, IoTHubTransportProvider.AMQP, False)
                 AppState.init(hubManager)
             except IoTHubError as iothub_error:
                 print("Unexpected error %s from IoTHub" % iothub_error )
@@ -120,7 +141,7 @@ def main(
 
     except KeyboardInterrupt:
         inputCapture.stop()
-        print("Camera capture module stopped" )
+        print("Module stopped" )
 
 
 def __convertStringToBool(env):
@@ -134,7 +155,7 @@ def __convertStringToBool(env):
 if __name__ == '__main__':
     try:        
         VERBOSE = __convertStringToBool(os.getenv('VERBOSE', 'False'))        
-        INTERVAL = float(os.getenv('INTERVAL', "6000"))
+        INTERVAL = float(os.getenv('INTERVAL', "60"))
 
     except ValueError as error:
         print(error )

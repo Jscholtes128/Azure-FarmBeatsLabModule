@@ -1,0 +1,18 @@
+{
+    "type": "Analog",
+    "manufacturer": "Grove",
+    "productCode": "BME280",
+    "sensorMeasures": [
+      {
+        "name": "Pressure",
+        "dataType": "Double",
+        "type": "Pressure",
+        "unit": "Pascal",
+        "aggregationType": "None",
+        "depth": 0,
+        "description": "Pressure Sensor"
+      }
+    ],
+    "name": "Grove Barometer Sensor",
+    "description": "Farm Beats Lab Kit Grove Barometer Sensor"
+  }

@@ -1,0 +1,17 @@
+{
+    "hardwareId": "HWD1",
+    "sensorModelId": "",
+    "location": {
+      "latitude": 0,
+      "longitude": 0,
+      "elevation": 0
+    },
+    "depth": 0,
+    "port": {
+      "name": "string",
+      "type": "Analog"
+    },
+    "deviceId": "",
+    "name": "Grove Barometer Sensor",
+    "description": "Farm Beats Lab Kit Grove Barometer Sensor"
+  }

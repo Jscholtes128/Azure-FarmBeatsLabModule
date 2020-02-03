@@ -13,10 +13,16 @@ class InputCapture(object):
     def __init__(
             self,
             verbose = True,
-            interval = 6000):
+            interval = 60,
+            deviceID="",
+            pressureSensorID="",
+            tempSensorID=""):
 
         self.verbose = verbose
         self.interval = interval
+        self.deviceID = deviceID
+        self.pressureSensorID = pressureSensorID
+        self.tempSensorID = tempSensorID
         self.running = True
 
     def __enter__(self):
@@ -29,21 +35,17 @@ class InputCapture(object):
         self.running = False
     
     def start(self):
-        bme = BME280(self.verbose,"13213")
+        bme = BME280(self.verbose)
 
-        while(self.running):
+        while(self.running):                         
             timestamp = datetime.datetime.now().isoformat()
             sensors = []
-            sensors.append(bme.capture())
+            sensors.extend(bme.capture(self.pressureSensorID,self.tempSensorID))
 
-            device = Device("asdas",timestamp,1,sensors)
-
-            #"deviceid": "<id of the Device created>",
-            #"timestamp": "<timestamp in ISO 8601 format>",
-            #"version" : "1",
-            #"sensors": [
-
-            message = IoTHubMessage(device.toJSON())
+            device = Device(self.deviceID,timestamp,1,sensors)   
+            jsn = device.toJSON()
+            message = IoTHubMessage(jsn)
+            print(jsn)
             AppState.HubManager.send_event_to_output("output1", message, 0)
             #self.lastMessageSentTime=datetime.now()
 

@@ -1,0 +1,18 @@
+{
+    "type": "Analog",
+    "manufacturer": "Grove",
+    "productCode": "BME280",
+    "sensorMeasures": [
+      {
+        "name": "Temperature",
+        "dataType": "Double",
+        "type": "AmbientTemperature",
+        "unit": "Celsius",
+        "aggregationType": "None",
+        "depth": 0,
+        "description": "Temperature Sensor"
+      }
+    ],
+    "name": "Grove Barometer Sensor",
+    "description": "Farm Beats Lab Kit Grove Barometer Sensor"
+  }

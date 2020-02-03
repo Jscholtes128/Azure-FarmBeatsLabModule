@@ -1,0 +1,13 @@
+{
+    "deviceModelId": "",
+    "hardwareId": "HWD1",
+    "reportingInterval": 0,
+    "location": {
+      "latitude": 0,
+      "longitude": 0,
+      "elevation": 0
+    },
+    "parentDeviceId": "",
+    "name": "Farm Beats Lab",
+    "description": "Farm Beats Lab IoT Edge Module"
+  }

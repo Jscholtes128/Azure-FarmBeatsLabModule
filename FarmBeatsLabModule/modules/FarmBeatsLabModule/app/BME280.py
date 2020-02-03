@@ -8,19 +8,19 @@ from Sensor import Sensor
 class BME280(object):
     
     def __init__(self,
-        verbose = True,
-        sensor_id="nosensorid"):
+        verbose = True):
 
         self.verbose = verbose
-        #self.address = address
-        self.sensor_id = sensor_id       
+        #self.address = address              
 
-    def capture(self):
+    def capture(self,pressure_sensor_id,temp_sensor_id):
         i2c = busio.I2C(board.SCL,board.SDA)
         bme = adafruit_bme280.Adafruit_BME280_I2C(i2c,0x76)
-        sensordata = []
+        sensors = []
         timestamp = datetime.datetime.now().isoformat()
-        sensordata.append({"timestamp":timestamp,"Preassure":bme.pressure})
-        sensor = Sensor(self.sensor_id,sensordata)
+
+        sensors.append(Sensor(pressure_sensor_id,{"timestamp":timestamp,"Pressure":bme.pressure})
+        sensors.append(Sensor(temp_sensor_id,{"timestamp":timestamp,"Temperature": bme.temperature}))
+
         print("Pressue %0.1f hPa" % bme.pressure)
-        return sensor
+        return sensors
