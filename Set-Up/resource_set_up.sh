@@ -11,13 +11,13 @@ az iot hub create --name $IOT_HUB \
    --resource-group $RESOURCE_GROUP --sku S1
 az iot hub device-identity create --device-id $DEVICE_ID --hub-name $IOT_HUB --edge-enabled
 CONNECTION_STR=`az iot hub device-identity show-connection-string --device-id "$DEVICE_ID" --hub-name "$IOT_HUB"`
-echo "$CONNECTION_STR"
+echo $CONNECTION_STR
+
 az storage account create \
     --name $STORE \
     --resource-group $RESOURCE_GROUP \
     --location $LOCATION \
-    --sku Standard_LRS \
-    --encryption blob
+    --sku Standard_LRS 
 
 az storage container create --name install
 
