@@ -21,7 +21,7 @@ az storage account create \
 
 az storage container create --name install
 
-sudo sed -i 's/<CONNECTION>/"${CONNECTION_STR}"/g' iotedgeinstall.sh
+sed -i 's/<CONNECTION>/"${CONNECTION_STR}"/g' iotedgeinstall.sh
 
 az storage blob upload \
     --container-name install \
