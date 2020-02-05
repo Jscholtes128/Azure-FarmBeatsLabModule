@@ -16,4 +16,4 @@ curl -L https://raw.githubusercontent.com/Jscholtes128/Azure-FarmBeatsLabModule/
 
 echo "--endpoint "${ENDPOINT}"--client_id "${CLIENT_ID}" --tenent_id "${TENANT_ID}" --client_secret "${CLIENT_SECRET}""
 
-python3 sensorregistration.py --endpoint $ENDPOINT--client_id $CLIENT_ID --tenent_id $TENANT_ID --client_secret $CLIENT_SECRET
+python3 sensorregistration.py --endpoint $ENDPOINT--client_id "$CLIENT_ID" --tenent_id "$TENANT_ID" --client_secret "$CLIENT_SECRET"
