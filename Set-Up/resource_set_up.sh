@@ -4,7 +4,7 @@ RESOURCE_GROUP=rg-FarmBeatLab-$RANDOM
 IOT_HUB=IotFarmBeatLab-$RANDOM
 STORE=Storage-$RANDOM
 DEVICE_ID=FarmBeatEdgeDevice
-LOCATION="Central US"
+LOCATION=centralus
 
 az group create --name $RESOURCE_GROUP --location $LOCATION
 az iot hub create --name $IOT_HUB \
