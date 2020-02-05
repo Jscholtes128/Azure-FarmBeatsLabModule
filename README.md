@@ -73,8 +73,7 @@ CLIENT_ID=<Farm Beats Client ID>
 CLIENT_SECRET=<Farm Beats Client Secret>
 TENANT_ID=<Tenent ID>
 
-curl -L https://raw.githubusercontent.com/Jscholtes128/Azure-FarmBeatsLabModule/master/Set-Up/registerdevice.sh  | bash $ENDPOINT $CLIENT_ID $CLIENT_SECRET $TENANT_ID
-
+curl -L https://raw.githubusercontent.com/Jscholtes128/Azure-FarmBeatsLabModule/master/Set-Up/registerdevice.sh | bash -s $ENDPOINT $CLIENT_ID $CLIENT_SECRET $TENANT_ID
 
 ```
 
