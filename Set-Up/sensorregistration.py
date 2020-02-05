@@ -58,6 +58,8 @@ resp = requests.post(ENDPOINT +'/Device', json.dumps(device_json), headers=heade
 resp_json = json.loads(resp.text)
 device_id = resp_json['id']
 
+sensor_ids = []
+
 for s in sensorlist:
     
     with open(s['modelfile']) as json_file:
@@ -68,7 +70,7 @@ for s in sensorlist:
     resp_json = json.loads(resp.text)
     print(resp_json)
     sensormodel_id = resp_json['id']
-    sensor_ids = []
+    
 
     with open('templates/sensor.json') as json_file:
         sensor_json = json.load(json_file)
