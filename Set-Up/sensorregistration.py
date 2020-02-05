@@ -6,7 +6,6 @@ import adal
 
 import argparse
 
-
 parser = argparse.ArgumentParser()
 parser.add_argument('--endpoint', help='farm beats data hub endpoint')
 parser.add_argument('--client_id', help='farm beats client id')

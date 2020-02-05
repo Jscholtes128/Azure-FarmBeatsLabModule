@@ -18,8 +18,7 @@ class BME280(object):
         bme = adafruit_bme280.Adafruit_BME280_I2C(i2c,0x76)
         sensors = []
         timestamp = datetime.datetime.now().isoformat()
-
-        sensors.append(Sensor(pressure_sensor_id,{"timestamp":timestamp,"Pressure":bme.pressure})
+        sensors.append(Sensor(pressure_sensor_id,{"timestamp":timestamp,"Pressure":bme.pressure}))
         sensors.append(Sensor(temp_sensor_id,{"timestamp":timestamp,"Temperature": bme.temperature}))
 
         print("Pressue %0.1f hPa" % bme.pressure)

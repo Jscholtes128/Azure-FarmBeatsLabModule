@@ -1,2 +1,3 @@
+setuptools
 adafruit-circuitpython-bme280
-azure-iothub-device-client~=1.4.3
+adafruit-circuitpython-ssd1306

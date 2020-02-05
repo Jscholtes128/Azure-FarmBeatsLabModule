@@ -1,0 +1,55 @@
+#FROM arm32v7/alpine
+FROM arm32v7/python:3.6-alpine
+#FROM arm32v7/alpine
+
+
+
+COPY requirements.txt  /
+
+RUN apk add --no-cache -Uu --virtual .build-dependencies \
+  build-base \
+  gcc \
+  ca-certificates \
+  python3-dev \
+  linux-headers \
+  make \
+  && apk add sudo bash openssl \
+  git \
+  && pip3 install setuptools \
+  && git clone https://github.com/doceme/py-spidev.git \
+  && cd py-spidev \
+  && make \
+  && sudo make install \
+  && cd \
+  && pip3 install rpi.gpio \
+  && pip3 install adafruit-circuitpython-ssd1306 \
+  && apk del --purge .build-dependencies \ 
+  && rm -rf /var/cache/apk/* /tmp/* \
+  && rm -rf /py-spidev
+
+  WORKDIR /usr/sdk
+  
+  RUN  git clone --recursive --depth=1 https://github.com/Azure/azure-iot-sdk-python.git --branch release_2019_01_03 --single-branch src 
+
+RUN  ./src/build_all/linux/setup.sh --python-version 3.6  \
+  && ./src/build_all/linux/release.sh --build-python 3.6
+
+WORKDIR /usr/sdk/src/build_all/linux/release_device_client 
+RUN  python3 setup.py install
+
+
+COPY FarmBeatsLabModule/app /app
+
+# Set the working directory
+WORKDIR /app
+
+RUN cp /usr/sdk/src/device/samples/iothub_client.so iothub_client.so && \
+  rm -r /usr/sdk/ 
+
+# Expose the port
+EXPOSE 80
+
+ENTRYPOINT [ "python3", "-u", "./main.py" ]
+
+
+

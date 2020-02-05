@@ -1,0 +1,48 @@
+#FROM arm32v7/python:3.6-slim-stretch as base
+#FROM arm32v7/debian:9-slim as base
+FROM arm32v7/ubuntu:18.04
+
+COPY requirements.txt  /
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  build-essential \
+  gcc \
+  sudo ca-certificates \
+  openssl \
+  python3.6-dev \
+  python3-pip \
+  python3-rpi.gpio \
+  git \
+  && pip3 install setuptools \
+  && pip3 install --no-cache -r requirements.txt 
+
+
+### IOT Client ####
+
+WORKDIR /usr/sdk
+
+RUN  git clone --recursive --depth=1 https://github.com/Azure/azure-iot-sdk-python.git --branch release_2019_01_03 --single-branch src
+
+## Build for Python 3
+RUN  ./src/build_all/linux/setup.sh --python-version 3.6  && \
+  ./src/build_all/linux/release.sh --build-python 3.6
+
+WORKDIR /usr/sdk/src/build_all/linux/release_device_client 
+RUN  python3 setup.py install
+
+COPY FarmBeatsLabModule/app /app
+
+# Set the working directory
+WORKDIR /app
+
+RUN cp /usr/sdk/src/device/samples/iothub_client.so iothub_client.so && \
+  rm -r /usr/sdk/ && \
+  apt-get remove --purge -y build-essential python3.6-dev gcc && \
+  apt-get autoremove -y && \
+  apt-get clean -y && \
+  rm -rf /var/lib/apt/lists/*
+
+# Expose the port
+EXPOSE 80
+
+ENTRYPOINT [ "python3", "-u", "./main.py" ]
