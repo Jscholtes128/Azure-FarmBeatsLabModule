@@ -84,6 +84,7 @@ for s in sensorlist:
     resp_json = json.loads(resp.text)
     sensor_ids.append( resp_json['id'])
 
+print(len(sensor_ids))
 
 print("""\"Interval\": 60, \n \
     \"DeviceID\": \"{}\",\n \
