@@ -32,4 +32,4 @@ az storage blob upload \
     --file iotedgeinstall.sh
 
 end=`date -u -d "60 minutes" '+%Y-%m-%dT%H:%MZ'`
-az storage blob generate-sas --account-name $STORE -c install -n iotedgeinstall.sh --permissions r --expiry $end --https-only
+az storage blob generate-sas --account-name $STORE -c install -n iotedgeinstall.sh --permissions r --expiry $end --https-only --full-uri
