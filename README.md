@@ -60,6 +60,12 @@ _Please review the steps on the [Farm Beats Documentation](https://docs.microsof
 
 ### Create Device and Sensor Models for Partner Integration
 
+Run the following scrip; Fill in:
+- Farm Beats Data Hub
+- Farm Beats Client ID
+- Farm Beats Tenent ID
+- Farm Beats Client Secret
+
 ```bash
 
 python curl -L https://raw.githubusercontent.com/Jscholtes128/Azure-FarmBeatsLabModule/master/Set-Up/sensorregistration.py | python --endpoint https://<Farm Beats Data Hub>.azurewebsites.net --client_id <Farm Beats Client ID> --tenent_id <Farm Beats Tenent ID> --client_secret <Farm Beats Client Secret>

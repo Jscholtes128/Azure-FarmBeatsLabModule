@@ -68,6 +68,7 @@ for s in sensorlist:
     resp_json = json.loads(resp.text)
     print(resp_json)
     sensormodel_id = resp_json['id']
+    sensor_ids = []
 
     with open('templates/sensor.json') as json_file:
         sensor_json = json.load(json_file)
@@ -79,6 +80,11 @@ for s in sensorlist:
     resp = requests.post(ENDPOINT +'/Sensor', json.dumps(sensor_json), headers=headers)
 
     resp_json = json.loads(resp.text)
-    sensor_id = resp_json['id']
+    sensor_ids.append( resp_json['id'])
     print(sensor_id)
 
+
+    print("""\"Interval\": 60, \n \
+      \"DeviceID\": \"{}\",\n \
+      \"PressureSensorID\": \"{}\",\n \
+      \"TempSensorID\": \"{}\",""".format(device_id,sensor_ids[0],sensor_ids[1]))
