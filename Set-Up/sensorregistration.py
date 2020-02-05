@@ -81,10 +81,9 @@ for s in sensorlist:
 
     resp_json = json.loads(resp.text)
     sensor_ids.append( resp_json['id'])
-    print(sensor_id)
 
 
-    print("""\"Interval\": 60, \n \
-      \"DeviceID\": \"{}\",\n \
-      \"PressureSensorID\": \"{}\",\n \
-      \"TempSensorID\": \"{}\",""".format(device_id,sensor_ids[0],sensor_ids[1]))
+print("""\"Interval\": 60, \n \
+    \"DeviceID\": \"{}\",\n \
+    \"PressureSensorID\": \"{}\",\n \
+    \"TempSensorID\": \"{}\",""".format(device_id,sensor_ids[0],sensor_ids[1]))
