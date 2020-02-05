@@ -6,9 +6,9 @@ https://docs.microsoft.com/en-us/azure/industry/agriculture/install-azure-farmbe
 
 ## Partner Integration
 
-[FarmBeatsProvider]('Steps/FarmBeatsProvider')
+[FarmBeatsProvider](/Steps/FarmBeatsProvider)
 
 ## Create Azure IoT Resources
 
-[IoTHubCreation]('Steps/IoTHubCreation')
+[IoTHubCreation](/Steps/IoTHubCreation)
 
