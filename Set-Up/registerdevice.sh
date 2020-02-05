@@ -1,8 +1,10 @@
 #!/bin/sh
-ENDPOINT=$0
-CLIENT_ID=$1 
-CLIENT_SECRET=$2
-TENANT_ID=$3
+ENDPOINT=$1
+CLIENT_ID=$2 
+CLIENT_SECRET=$3
+TENANT_ID=$4
+
+
 
 curl -L https://raw.githubusercontent.com/Jscholtes128/Azure-FarmBeatsLabModule/master/Set-Up/sensorregistration.py > sensorregistration.py
 
