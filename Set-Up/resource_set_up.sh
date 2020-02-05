@@ -2,7 +2,7 @@
 az extension add --name azure-cli-iot-ext
 RESOURCE_GROUP=rg-FarmBeatLab-$RANDOM
 IOT_HUB=IotFarmBeatLab-$RANDOM
-STORE=Storage-$RANDOM
+STORE=Storage$RANDOM
 DEVICE_ID=FarmBeatEdgeDevice
 LOCATION=centralus
 
