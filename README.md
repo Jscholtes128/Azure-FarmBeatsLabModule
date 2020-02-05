@@ -68,7 +68,13 @@ Run the following scrip; Fill in:
 
 ```bash
 
-python curl -L https://raw.githubusercontent.com/Jscholtes128/Azure-FarmBeatsLabModule/master/Set-Up/sensorregistration.py | python --endpoint https://<Farm Beats Data Hub>.azurewebsites.net --client_id <Farm Beats Client ID> --tenent_id <Farm Beats Tenent ID> --client_secret <Farm Beats Client Secret>
+ENDPOINT=<Farm Beats Data Hub Web URL>
+CLIENT_ID=<Farm Beats Client ID>
+CLIENT_SECRET=<Farm Beats Client Secret>
+TENANT_ID=<Tenent ID>
+
+curl -L https://raw.githubusercontent.com/Jscholtes128/Azure-FarmBeatsLabModule/master/Set-Up/registerdevice.sh  | bash $ENDPOINT $CLIENT_ID $CLIENT_SECRET $TENANT_ID
+
 
 ```
 
