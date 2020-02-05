@@ -1,5 +1,8 @@
 # Farm Beats Hack
 
+![hackathon design](/images/hackathon.jpg)
+
+
 ## Install Farm Beats
 
 https://docs.microsoft.com/en-us/azure/industry/agriculture/install-azure-farmbeats#install
