@@ -2,7 +2,7 @@
 az extension add --name azure-cli-iot-ext
 RESOURCE_GROUP=rg-FarmBeatLab-$RANDOM
 IOT_HUB=IotFarmBeatLab-$RANDOM
-STORE=Storage$RANDOM
+STORE=fbstorage$RANDOM
 DEVICE_ID=FarmBeatEdgeDevice
 LOCATION=centralus
 
@@ -21,7 +21,7 @@ az storage account create \
 
 az storage container create --name install
 
-curl -L https://raw.githubusercontent.com/Jscholtes128/Azure-FarmBeatsLabModule/master/Set-Up/iotedgeinstall.sh
+curl -L https://raw.githubusercontent.com/Jscholtes128/Azure-FarmBeatsLabModule/master/Set-Up/iotedgeinstall.sh iotedgeinstall.sh
 
 sed -i 's/<CONNECTION>/"${CONNECTION_STR}"/g' iotedgeinstall.sh
 
