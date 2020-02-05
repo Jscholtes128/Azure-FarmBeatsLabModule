@@ -26,7 +26,7 @@ curl -L https://raw.githubusercontent.com/Jscholtes128/Azure-FarmBeatsLabModule/
 sed -i 's/<CONNECTION>/"${CONNECTION_STR}"/g' iotedgeinstall.sh
 
 az storage blob upload \
-    --account-name $STORE
+    --account-name $STORE \
     --container-name install \
     --name iotedgeinstall.sh \
     --file iotedgeinstall.sh
