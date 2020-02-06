@@ -32,7 +32,7 @@ curl -L https://raw.githubusercontent.com/Jscholtes128/Azure-FarmBeatsLabModule/
 
 sed -i 's/<CONNECTION>/"${CONNECTION_STR}"/g' iotedgeinstall.sh
 
-rm iotedgeinstall.sh
+
 
 az storage blob upload \
     --account-name $STORE \
@@ -40,5 +40,10 @@ az storage blob upload \
     --name iotedgeinstall.sh \
     --file iotedgeinstall.sh
 
+rm iotedgeinstall.sh
+
 end=`date -u -d "240 minutes" '+%Y-%m-%dT%H:%MZ'`
-az storage blob generate-sas --account-name $STORE -c install -n iotedgeinstall.sh --permissions r --expiry $end --https-only --full-uri
+SAS=`az storage blob generate-sas --account-name "$STORE" -c install -n iotedgeinstall.sh --permissions r --expiry "$end" --https-only --full-uri`
+
+echo "Run on Raspberry Pi"
+echo `curl -L https://tinyurl2.azurewebsites.net/api/TinyUrl?url="$SAS"`

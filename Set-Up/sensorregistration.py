@@ -86,6 +86,7 @@ for s in sensorlist:
 
 print(len(sensor_ids))
 
+print("Save this to updated your module twin!!")
 print("""\"Interval\": 60, \n \
     \"DeviceID\": \"{}\",\n \
     \"PressureSensorID\": \"{}\",\n \
