@@ -18,7 +18,7 @@ az iot edge set-modules --device-id $DEVICE_ID --hub-name $IOT_HUB --content dep
 rm deployment.arm32v7.json
 
 CONNECTION_STR=`az iot hub device-identity show-connection-string --device-id "$DEVICE_ID" --hub-name "$IOT_HUB"`
-echo $CONNECTION_STR
+echo "${CONNECTION_STR}"
 
 az storage account create \
     --name $STORE \
@@ -30,9 +30,7 @@ az storage container create --account-name $STORE --name install
 
 curl -L https://raw.githubusercontent.com/Jscholtes128/Azure-FarmBeatsLabModule/master/Set-Up/iotedgeinstall.sh > iotedgeinstall.sh
 
-sed -i 's/<CONNECTION>/"${CONNECTION_STR}"/g' iotedgeinstall.sh
-
-
+sed -i "s/<CONNECTION>/"${CONNECTION_STR}"/g" iotedgeinstall.sh
 
 az storage blob upload \
     --account-name $STORE \
@@ -48,4 +46,4 @@ SAS=`az storage blob generate-sas --account-name "$STORE" -c install -n iotedgei
 echo "Run on Raspberry Pi"
 TINYURL= `curl -L https://tinyurl2.azurewebsites.net/api/TinyUrl?url="$SAS"`
 
-echo $TINYURL
+echo "${TINYURL}"
