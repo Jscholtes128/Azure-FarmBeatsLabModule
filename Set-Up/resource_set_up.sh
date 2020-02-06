@@ -20,7 +20,7 @@ az iot edge set-modules --device-id $DEVICE_ID --hub-name $IOT_HUB --content dep
 rm deployment.arm32v7.json
 
 CONNECTION_STR_JSON=`az iot hub device-identity show-connection-string --device-id "$DEVICE_ID" --hub-name "$IOT_HUB"`
-CONNECTION_STR=`jq '.Instances[0].connectionString' "$CONNECTION_STR_JSON"`
+CONNECTION_STR=$(echo $CONNECTION_STR_JSON | jq '.connectionString')
 sleep 10s
 echo "Connection String: ${CONNECTION_STR}"
 
@@ -48,7 +48,7 @@ end=`date -u -d "240 minutes" '+%Y-%m-%dT%H:%MZ'`
 SAS=`az storage blob generate-sas --account-name "$STORE" -c install -n iotedgeinstall.sh --permissions r --expiry "$end" --https-only --full-uri`
 echo "SAS: ${SAS}"
 
-TINYURL=$(curl -L https://tinyurl2.azurewebsites.net/api/TinyUrl?url=$SAS)
+TINYURL=$(curl -L "https://tinyurl2.azurewebsites.net/api/TinyUrl?url=${SAS}")
 
 echo "Run on Raspberry Pi"
 echo "URL: ${TINYURL}"
