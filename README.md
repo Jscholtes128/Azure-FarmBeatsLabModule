@@ -1,13 +1,14 @@
 # Farm Beats Hack
 
+
 ![hackathon design](/images/hackathon.jpg)
 
 
-## Install Farm Beats
+## Challenge 1 -  Install Farm Beats
 
 https://docs.microsoft.com/en-us/azure/industry/agriculture/install-azure-farmbeats#install
 
-## Partner Integration
+## Challenge 2 - Device Integrator
 
 ### Enable device integration with FarmBeats
 
@@ -68,14 +69,22 @@ Run the following scrip; Fill in:
 
 ```bash
 
-ENDPOINT=<Farm Beats Data Hub Web URL>
-CLIENT_ID=<Farm Beats Client ID>
-CLIENT_SECRET=<Farm Beats Client Secret>
-TENANT_ID=<Tenent ID>
+ENDPOINT=[Farm Beats Data Hub Web URL]
+CLIENT_ID=[Farm Beats Client ID]
+CLIENT_SECRET=[Farm Beats Client Secret]
+TENANT_ID=[Tenent ID]
 
 curl -L https://raw.githubusercontent.com/Jscholtes128/Azure-FarmBeatsLabModule/master/Set-Up/registerdevice.sh | bash -s $ENDPOINT $CLIENT_ID $CLIENT_SECRET $TENANT_ID
 
 ```
+
+Copy the generated JSON as we will use it for our Device Twins,
+
+      Interval": 60,
+     "DeviceID": "[generated]",
+     "PressureSensorID": "[generated]",
+     "TempSensorID": "[generated]",
+
 
 __Capture the Json as this will be used in the device twin__
 

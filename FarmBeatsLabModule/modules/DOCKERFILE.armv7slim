@@ -1,4 +1,4 @@
-#FROM arm32v7/python:3.6-slim-stretch as base
+#FROM arm32v7/python:3.6-slim
 #FROM arm32v7/debian:9-slim as base
 FROM arm32v7/ubuntu:18.04
 
@@ -37,7 +37,7 @@ WORKDIR /app
 
 RUN cp /usr/sdk/src/device/samples/iothub_client.so iothub_client.so && \
   rm -r /usr/sdk/ && \
-  apt-get remove --purge -y build-essential python3.6-dev gcc && \
+  apt-get remove --purge -y build-essential python3.6-dev gcc git && \
   apt-get autoremove -y && \
   apt-get clean -y && \
   rm -rf /var/lib/apt/lists/*
