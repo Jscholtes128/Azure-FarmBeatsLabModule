@@ -48,4 +48,4 @@ SAS=`az storage blob generate-sas --account-name "$STORE" -c install -n iotedgei
 echo "Run on Raspberry Pi"
 TINYURL= `curl -L https://tinyurl2.azurewebsites.net/api/TinyUrl?url="$SAS"`
 
-echoe $TINYURL
+echo $TINYURL
