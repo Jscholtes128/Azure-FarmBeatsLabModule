@@ -42,8 +42,9 @@ rm iotedgeinstall.sh
 
 end=`date -u -d "240 minutes" '+%Y-%m-%dT%H:%MZ'`
 SAS=`az storage blob generate-sas --account-name "$STORE" -c install -n iotedgeinstall.sh --permissions r --expiry "$end" --https-only --full-uri`
+echo "${SAS}"
 
 echo "Run on Raspberry Pi"
-TINYURL= `curl -L https://tinyurl2.azurewebsites.net/api/TinyUrl?url="$SAS"`
+TINYURL= $(curl -L https://tinyurl2.azurewebsites.net/api/TinyUrl?url=$SAS)
 
 echo "${TINYURL}"
