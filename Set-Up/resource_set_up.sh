@@ -11,6 +11,8 @@ az iot hub create --name $IOT_HUB \
    --resource-group $RESOURCE_GROUP --sku S1
 az iot hub device-identity create --device-id $DEVICE_ID --hub-name $IOT_HUB --edge-enabled
 
+sleep 30s
+
 curl -L https://raw.githubusercontent.com/Jscholtes128/Azure-FarmBeatsLabModule/master/FarmBeatsLabModule/config/deployment.arm32v7.json > deployment.arm32v7.json
 
 az iot edge set-modules --device-id $DEVICE_ID --hub-name $IOT_HUB --content deployment.arm32v7.json
@@ -18,6 +20,7 @@ az iot edge set-modules --device-id $DEVICE_ID --hub-name $IOT_HUB --content dep
 rm deployment.arm32v7.json
 
 CONNECTION_STR=`az iot hub device-identity show-connection-string --device-id "$DEVICE_ID" --hub-name "$IOT_HUB"`
+sleep 10s
 echo "${CONNECTION_STR}"
 
 az storage account create \
@@ -43,7 +46,6 @@ rm iotedgeinstall.sh
 end=`date -u -d "240 minutes" '+%Y-%m-%dT%H:%MZ'`
 SAS=`az storage blob generate-sas --account-name "$STORE" -c install -n iotedgeinstall.sh --permissions r --expiry "$end" --https-only --full-uri`
 echo "${SAS}"
-
 
 TINYURL=$(curl -L https://tinyurl2.azurewebsites.net/api/TinyUrl?url=$SAS)
 
