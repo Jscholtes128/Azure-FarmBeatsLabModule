@@ -21,7 +21,7 @@ rm deployment.arm32v7.json
 
 CONNECTION_STR=`az iot hub device-identity show-connection-string --device-id "$DEVICE_ID" --hub-name "$IOT_HUB"`
 sleep 10s
-echo "${CONNECTION_STR}"
+echo "Connection String: ${CONNECTION_STR}"
 
 az storage account create \
     --name $STORE \
@@ -50,4 +50,4 @@ echo "${SAS}"
 TINYURL=$(curl -L https://tinyurl2.azurewebsites.net/api/TinyUrl?url=$SAS)
 
 echo "Run on Raspberry Pi"
-echo "${TINYURL}"
+echo "URL: ${TINYURL}"
