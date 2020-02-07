@@ -34,7 +34,7 @@ az storage container create --account-name $STORE --name install
 
 curl -L https://raw.githubusercontent.com/Jscholtes128/Azure-FarmBeatsLabModule/master/Set-Up/iotedgeinstall.sh > iotedgeinstall.sh
 
-sed -i "s/<CONNECTION>/"${CONNECTION_STR}"/g" iotedgeinstall.sh
+sed -i "s/[CONNECTION]/"${CONNECTION_STR}"/g" iotedgeinstall.sh
 
 az storage blob upload \
     --account-name $STORE \
@@ -48,7 +48,8 @@ end=`date -u -d "240 minutes" '+%Y-%m-%dT%H:%MZ'`
 SAS=`az storage blob generate-sas --account-name "$STORE" -c install -n iotedgeinstall.sh --permissions r --expiry "$end" --https-only --full-uri`
 echo "SAS: ${SAS}"
 
-TINYURL=$(curl -L "https://tinyurl2.azurewebsites.net/api/TinyUrl?url=${SAS}")
+curl -L https://raw.githubusercontent.com/Jscholtes128/Azure-FarmBeatsLabModule/master/Set-Up/geturl.py > geturl.py
 
-echo "Run on Raspberry Pi"
-echo "URL: ${TINYURL}"
+python3 geturl.py --url $SAS
+
+rm geturl.py
