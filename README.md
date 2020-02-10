@@ -5,8 +5,8 @@
 ## Prerequisites
 
 - Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/en-us/free/) before you begin.
-- Farm Beats [Student Lab Kit](https://github.com/farmbeatslabs/studentkit/blob/master/Indoor-m1/Indoor_M1_Hardware_List.md)
-- [Raspbian Buster](https://www.raspberrypi.org/downloads/raspbian/)
+- Farm Beats [Student Lab Kit](https://github.com/farmbeatslabs/studentkit/blob/master/Indoor-m1/Indoor_M1_Hardware_List.md) (_todo: hardware build options_)
+- Flash SD with [Raspbian Buster](https://www.raspberrypi.org/downloads/raspbian/) for Raspberry Pi
 
 ## Step 1 -  Install Farm Beats
 
@@ -115,3 +115,15 @@ The generated URL (https://j.mp/2#####) will be used in Step 4 to install and co
 ### 3.4 - Update Device Twins to Module
 
 ### 3.5 - Create Azure IoT Route
+
+## Step 4 - Farm Beats UI
+
+### 4.1 Create Farm and Add Sensor
+
+ 1. Create a [Farm](https://docs.microsoft.com/en-us/azure/industry/agriculture/manage-farms-in-azure-farmbeats) with Azure Farm Beats.
+
+ 2. Add your device to your Farm.
+
+      (Add Images)
+
+ 3. Generate [maps](https://docs.microsoft.com/en-us/azure/industry/agriculture/generate-maps-in-azure-farmbeats) in Azure Farm Beats.
