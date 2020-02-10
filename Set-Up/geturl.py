@@ -11,8 +11,8 @@ args = parser.parse_args()
 #o = urlparse(args.url)
 #cl =o.quote(o)
 
-clean_url = urllib.parse.urlparse(args.url).geturl()
-
+clean_url = urllib.parse.quote(args.url)
+clean_url = clean_url.replace("\"","")
 url = "https://tinyurl2.azurewebsites.net/api/TinyUrl?url={}".format(clean_url)
 print(url)
 
