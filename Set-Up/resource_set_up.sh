@@ -40,13 +40,12 @@ az storage blob upload \
     --account-name $STORE \
     --container-name install \
     --name iotedgeinstall.sh \
-    --file iotedgeinstall.sh \
-    --connection-string $CONNECTION_STR
+    --file iotedgeinstall.sh
 
 rm iotedgeinstall.sh
 
 end=`date -u -d "240 minutes" '+%Y-%m-%dT%H:%MZ'`
-SAS=`az storage blob generate-sas --account-name "$STORE" -c install -n iotedgeinstall.sh --permissions r --expiry "$end" --https-only --full-uri --connection-string $CONNECTION_STR`
+SAS=`az storage blob generate-sas --account-name "$STORE" -c install -n iotedgeinstall.sh --permissions r --expiry "$end" --https-only --full-uri`
 echo "SAS: ${SAS}"
 
 curl -L https://raw.githubusercontent.com/Jscholtes128/Azure-FarmBeatsLabModule/master/Set-Up/geturl.py > geturl.py
