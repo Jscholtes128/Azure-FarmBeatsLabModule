@@ -21,7 +21,7 @@ rm deployment.arm32v7.json
 
 CONNECTION_STR_JSON=`az iot hub device-identity show-connection-string --device-id "$DEVICE_ID" --hub-name "$IOT_HUB"`
 CONNECTION_STR=$(echo $CONNECTION_STR_JSON | jq '.connectionString')
-sleep 10s
+
 echo "Connection String: ${CONNECTION_STR}"
 
 az storage account create \
