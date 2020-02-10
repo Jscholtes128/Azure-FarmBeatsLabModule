@@ -14,8 +14,8 @@ args = parser.parse_args()
 headers = {'Content-Type':'application/text'}
 
 clean_url = urllib.parse.quote(args.url)
-clean_url = clean_url.replace("\"","")
 url = "https://tinyurl2.azurewebsites.net/api/TinyUrl?url={}".format(clean_url)
+url = url.replace("\"","")
 print(url)
 
 resp = requests.post(url,headers=headers)
