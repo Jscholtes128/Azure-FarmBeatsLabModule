@@ -116,15 +116,16 @@ The generated URL (https://j.mp/2#####) will be used in Step 4 to install and co
 
 ### 3.5 - Create Azure IoT Route
 
-## Step 4 - Farm Beats UI
+## Step 4 - Farm Beats  (x Minutes)
 
-### 4.1 Create Farm and Add Sensor (x Minutes)
+### 4.1 Create Farm
 
- 1. Create a [Farm](https://docs.microsoft.com/en-us/azure/industry/agriculture/manage-farms-in-azure-farmbeats) with Azure Farm Beats.
+ Create a [Farm](https://docs.microsoft.com/en-us/azure/industry/agriculture/manage-farms-in-azure-farmbeats) with Azure Farm Beats.
 
- 2. Add your device to your Farm.
+### 4.2 Add your device to your Farm
 
       (Add Images)
 
- 3. Generate [maps](https://docs.microsoft.com/en-us/azure/industry/agriculture/generate-maps-in-azure-farmbeats) in Azure Farm Beats.
- 
+### 4.3 Generate Maps
+
+ Generate [maps](https://docs.microsoft.com/en-us/azure/industry/agriculture/generate-maps-in-azure-farmbeats) in Azure Farm Beats.
