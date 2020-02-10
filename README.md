@@ -8,11 +8,11 @@
 - Farm Beats [Student Lab Kit](https://github.com/farmbeatslabs/studentkit/blob/master/Indoor-m1/Indoor_M1_Hardware_List.md) (_todo: hardware build options_)
 - Flash SD with [Raspbian Buster](https://www.raspberrypi.org/downloads/raspbian/) for Raspberry Pi
 
-## Step 1 -  Install Farm Beats
+## Step 1 - Install Farm Beats (40 minutes)
 
 https://docs.microsoft.com/en-us/azure/industry/agriculture/install-azure-farmbeats#install
 
-## Step 2 - Device Integrator
+## Step 2 - Device Integrator (x Minutes)
 
 ### 2.1 - Enable device integration with FarmBeats
 
@@ -23,7 +23,7 @@ This step creates a client that has access to your Azure FarmBeats instance as t
 - Client secret
 - EventHub connection string
 
-#### Azure Cloud Shell Access
+#### 2.1.1 Azure Cloud Shell Access
 
 Grant Azure Cloud Shell Access to Farm Beats API deployment (https://<datahub>.azurewebsites.net)
 
@@ -35,7 +35,7 @@ Grant Azure Cloud Shell Access to Farm Beats API deployment (https://<datahub>.a
 
 4. Click on “Expose an API” -> Click “Add a client application” and enter 04b07795-8ddb-461a-bbee-02f9e1bf7b46 and check "Authorize Scope". This will give access to the Azure CLI (Cloud Shell) to perform the below steps.
 
-#### Generate Partner
+#### 2.1.2 Generate Partner
 
 1. Open Cloud Shell. This option is available on the toolbar in the upper-right corner of the Azure portal.
 
@@ -60,7 +60,7 @@ Run the following script. The script asks for the Tenant ID which can be obtaine
 
 _Please review the steps on the [Farm Beats Documentation](https://docs.microsoft.com/en-us/azure/industry/agriculture/get-sensor-data-from-sensor-partner#enable-device-integration-with-farmbeats) for additional guiidance._
  
-### 2.2 - Create Device and Sensor Models for Partner Integration
+### 2.2 - Create Device and Sensor Models for Partner Integration 
 
 Run the following scrip; Fill in:
 - Farm Beats Data Hub
@@ -88,7 +88,7 @@ __Copy__ the generated JSON as we will use in Step 3.2 Add Module Twins
      "TempSensorID": "[generated]",
 ```
 
-## Step 3 - Azure IoT Resource and Device
+## Step 3 - Azure IoT Resource and Device (x Minutes)
 
 ### 3.1 - Create Azure Resources
 
@@ -118,7 +118,7 @@ The generated URL (https://j.mp/2#####) will be used in Step 4 to install and co
 
 ## Step 4 - Farm Beats UI
 
-### 4.1 Create Farm and Add Sensor
+### 4.1 Create Farm and Add Sensor (x Minutes)
 
  1. Create a [Farm](https://docs.microsoft.com/en-us/azure/industry/agriculture/manage-farms-in-azure-farmbeats) with Azure Farm Beats.
 
@@ -127,3 +127,4 @@ The generated URL (https://j.mp/2#####) will be used in Step 4 to install and co
       (Add Images)
 
  3. Generate [maps](https://docs.microsoft.com/en-us/azure/industry/agriculture/generate-maps-in-azure-farmbeats) in Azure Farm Beats.
+ 
