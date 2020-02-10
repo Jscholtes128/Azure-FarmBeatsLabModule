@@ -11,13 +11,16 @@ args = parser.parse_args()
 #o = urlparse(args.url)
 #cl =o.quote(o)
 
+headers = {'Content-Type':'application/text'}
+
 clean_url = urllib.parse.quote(args.url)
 clean_url = clean_url.replace("\"","")
 url = "https://tinyurl2.azurewebsites.net/api/TinyUrl?url={}".format(clean_url)
 print(url)
 
-resp = requests.post(url)
+resp = requests.post(url,headers=headers)
+print(resp.status_code)
 tiny_url = resp.text
 print(tiny_url)
-print("echo Run on Raspberry Pi Device")
-print("echo sudo curl -L " + tiny_url + " | bash")
+print("Run on Raspberry Pi Device:")
+print(" sudo curl -L {} | bash ".format(tiny_url))
