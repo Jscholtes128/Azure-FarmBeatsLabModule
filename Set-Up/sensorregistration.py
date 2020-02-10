@@ -32,8 +32,7 @@ access_token = token_response.get('accessToken')
 
 sensorlist = [{'name':'Grove Barometer Sensor (Pressure)', 'description':'Farm Beats Lab Kit Grove Barometer Sensor','modelfile':'templates/sensormodelpressure.json'},
 {'name':'Grove Barometer Sensor (Temp)', 'description':'Farm Beats Lab Kit Grove Barometer Temp Sensor','modelfile':'templates/sensormodeltemp.json'}]
-
-#for AKS deployment you'd need to the service key in the header as well    
+   
 headers = {'Content-Type':'application/json', 'accept': 'application/json',  'Authorization':('Bearer ' + access_token)} 
 
 
@@ -41,9 +40,7 @@ with open('templates/devicemodel.json') as json_file:
     devicemodel_json = json.load(json_file)
 
 resp = requests.post(ENDPOINT +'/DeviceModel', json.dumps(devicemodel_json), headers=headers)
-
 resp_json =json.loads(resp.text)
-
 device_model_id = resp_json['id']
 
 with open('templates/device.json') as json_file:
@@ -51,7 +48,6 @@ with open('templates/device.json') as json_file:
 
 
 device_json['deviceModelId'] = device_model_id
-#device_json['farmId'] = ""
 
 resp = requests.post(ENDPOINT +'/Device', json.dumps(device_json), headers=headers)
 

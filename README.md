@@ -1,16 +1,14 @@
-# Farm Beats Hack
-
+# Farm Beats Raspberry Pi Lab Hackathon
 
 ![hackathon design](/images/hackathon.jpg)
 
-
-## Challenge 1 -  Install Farm Beats
+## Step 1 -  Install Farm Beats
 
 https://docs.microsoft.com/en-us/azure/industry/agriculture/install-azure-farmbeats#install
 
-## Challenge 2 - Device Integrator
+## Step 2 - Device Integrator
 
-### Enable device integration with FarmBeats
+### 2.1 - Enable device integration with FarmBeats
 
 This step creates a client that has access to your Azure FarmBeats instance as the device partner. Generating your Farm Beats partner will provide your with the following:
 
@@ -59,7 +57,7 @@ Run the following script. The script asks for the Tenant ID which can be obtaine
 _Please review the steps on the [Farm Beats Documentation](https://docs.microsoft.com/en-us/azure/industry/agriculture/get-sensor-data-from-sensor-partner#enable-device-integration-with-farmbeats) for additional guiidance._
  
 
-### Create Device and Sensor Models for Partner Integration
+### 2.2 - Create Device and Sensor Models for Partner Integration
 
 Run the following scrip; Fill in:
 - Farm Beats Data Hub
@@ -78,20 +76,20 @@ curl -L https://raw.githubusercontent.com/Jscholtes128/Azure-FarmBeatsLabModule/
 
 ```
 
-Copy the generated JSON as we will use it for our Device Twins,
+__Copy__ the generated JSON as we will use in Step 3.2 Add Module Twins
 
+```json
       Interval": 60,
      "DeviceID": "[generated]",
      "PressureSensorID": "[generated]",
      "TempSensorID": "[generated]",
+```
 
 
-__Capture the Json as this will be used in the device twin__
 
+## Step 3 - Azure IoT Resource and Device
 
-## Create Azure IoT Resources
-
-## Create Azure IoT Resources
+### 3.1 - Create Azure Resources
 
 Run the bash scrip from the Azure Cloud Shell
 
@@ -100,7 +98,16 @@ curl -L https://raw.githubusercontent.com/Jscholtes128/Azure-FarmBeatsLabModule/
 
 ```
 
-Run the provided bash script on your Raspberry Pi device to install IoT Edge Runtime and configure 
+The generated URL (https://j.mp/2#####) will be used in Step 4 to install and configure Azure IoT Runtime on Raspberry Pi.
 
-### Create Azure IoT Route 
+### 3.3 - Install Azure IoT Runtime
+
+#### 3.3.1 - Configure Raspberry Pi Inputs
+
+#### 3.3.2 - Install with Tiny URL
+
+### 3.4 - Update Device Twins to Module
+
+### 3.5 - Create Azure IoT Route 
+
 
