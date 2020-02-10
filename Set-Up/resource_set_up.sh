@@ -34,7 +34,8 @@ az storage container create --account-name $STORE --name install
 
 curl -L https://raw.githubusercontent.com/Jscholtes128/Azure-FarmBeatsLabModule/master/Set-Up/iotedgeinstall.sh > iotedgeinstall.sh
 
-sed -i "s,[REPLACE],${CONNECTION_STR}," iotedgeinstall.sh
+#-i
+sed  "s,[REPLACE],${CONNECTION_STR}," iotedgeinstall.sh
 
 az storage blob upload \
     --account-name $STORE \
