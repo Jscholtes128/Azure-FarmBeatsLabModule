@@ -2,6 +2,12 @@
 
 ![hackathon design](/images/hackathon.jpg)
 
+## Prerequisites
+
+- Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/en-us/free/) before you begin.
+- Farm Beats [Student Lab Kit](https://github.com/farmbeatslabs/studentkit/blob/master/Indoor-m1/Indoor_M1_Hardware_List.md)
+- [Raspbian Buster](https://www.raspberrypi.org/downloads/raspbian/)
+
 ## Step 1 -  Install Farm Beats
 
 https://docs.microsoft.com/en-us/azure/industry/agriculture/install-azure-farmbeats#install
@@ -31,7 +37,6 @@ Grant Azure Cloud Shell Access to Farm Beats API deployment (https://<datahub>.a
 
 #### Generate Partner
 
-
 1. Open Cloud Shell. This option is available on the toolbar in the upper-right corner of the Azure portal.
 
 ![cloud shell bar](/images/navigation-bar-1.png)
@@ -53,10 +58,8 @@ Run the following script. The script asks for the Tenant ID which can be obtaine
 
 5. Follow the onscreen instructions to capture the values for API Endpoint, Tenant ID, Client ID, Client Secret, and EventHub Connection String.
 
-
 _Please review the steps on the [Farm Beats Documentation](https://docs.microsoft.com/en-us/azure/industry/agriculture/get-sensor-data-from-sensor-partner#enable-device-integration-with-farmbeats) for additional guiidance._
  
-
 ### 2.2 - Create Device and Sensor Models for Partner Integration
 
 Run the following scrip; Fill in:
@@ -85,13 +88,16 @@ __Copy__ the generated JSON as we will use in Step 3.2 Add Module Twins
      "TempSensorID": "[generated]",
 ```
 
-
-
 ## Step 3 - Azure IoT Resource and Device
 
 ### 3.1 - Create Azure Resources
 
-Run the bash scrip from the Azure Cloud Shell
+Run the bash scrip from the Azure Cloud Shell to create:
+
+- Azure IoT Hub
+- Azure IoT Hub Edge Device
+- Azure IoT Hub Edge Device Farm Beats Module
+- Azure Blob Store with IoT Edge Runtime install script for Raspberry Pi (Tiny Url will be provided to SAS URL)
 
 ```bash
 curl -L https://raw.githubusercontent.com/Jscholtes128/Azure-FarmBeatsLabModule/master/Set-Up/resource_set_up.sh | bash
@@ -108,6 +114,4 @@ The generated URL (https://j.mp/2#####) will be used in Step 4 to install and co
 
 ### 3.4 - Update Device Twins to Module
 
-### 3.5 - Create Azure IoT Route 
-
-
+### 3.5 - Create Azure IoT Route
