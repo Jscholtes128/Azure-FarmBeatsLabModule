@@ -8,6 +8,6 @@ sudo apt-get update
 sudo apt-get -y install moby-engine
 sudo apt-get -y install moby-cli
 sudo apt-get -y install iotedge
-sudo sed -i 's/<ADD DEVICE CONNECTION STRING HERE>/[REPLACE]/g' /etc/iotedge/config.yaml
+sudo sed -i 's/<ADD DEVICE CONNECTION STRING HERE>/REPLACE/g' /etc/iotedge/config.yaml
 
 
