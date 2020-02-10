@@ -19,5 +19,5 @@ print(url)
 resp = requests.post(url)
 tiny_url = resp.text
 print(tiny_url)
-print("Run on Raspberry Pi Device:")
-print("echo sudo curl -L %s | bash " % tiny_url)
+print("echo Run on Raspberry Pi Device")
+print("echo sudo curl -L " + tiny_url + " | bash")
